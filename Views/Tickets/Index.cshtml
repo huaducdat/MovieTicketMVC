@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MovieTicketMVC.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Danh sách vé";
+}
+
+<h2>Danh sách vé đã đặt</h2>
+
+<a asp-action="Create"
+   class="btn btn-success mb-3">
+    + Thêm vé mới
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Khách hàng</th>
+            <th>Số điện thoại</th>
+            <th>Phim</th>
+            <th>Ngày chiếu</th>
+            <th>Số ghế</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@ticket.Id</td>
+
+                <td>@ticket.CustomerName</td>
+
+                <td>@ticket.CustomerPhone</td>
+
+                <td>
+                    @(ticket.Movie?.Title ?? "Không xác định")
+                </td>
+
+                <td>
+                    @ticket.ShowDate.ToString("dd/MM/yyyy HH:mm")
+                </td>
+
+                <td>@ticket.SeatCount</td>
+
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@ticket.Id"
+                       class="btn btn-warning btn-sm">
+                        Sửa
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@ticket.Id"
+                       class="btn btn-danger btn-sm">
+                        Xóa
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

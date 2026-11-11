@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - MovieTicketMVC</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-light
+                bg-light border-bottom mb-4">
+
+        <div class="container">
+
+            <a class="navbar-brand"
+               asp-controller="Movies"
+               asp-action="Index">
+                MovieTicketMVC
+            </a>
+
+            <div class="navbar-nav">
+
+                <a class="nav-link"
+                   asp-controller="Movies"
+                   asp-action="Index">
+                    Danh sách phim
+                </a>
+
+                <a class="nav-link"
+                   asp-controller="Tickets"
+                   asp-action="Index">
+                    Danh sách vé
+                </a>
+
+                <a class="nav-link"
+                   asp-controller="Tickets"
+                   asp-action="Create">
+                    Mua vé
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+
+        @RenderBody()
+
+    </main>
+
+    <script src="~/lib/jquery/dist/jquery.min.js">
+    </script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

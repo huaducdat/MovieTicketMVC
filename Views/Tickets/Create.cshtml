@@ -1,0 +1,99 @@
+﻿@model MovieTicketMVC.Models.Ticket
+
+@{
+    ViewData["Title"] = "Thêm vé mới";
+}
+
+<h2>Thêm vé mới</h2>
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="CustomerName"
+               class="form-label">
+            Tên khách hàng
+        </label>
+
+        <input asp-for="CustomerName"
+               class="form-control" />
+
+        <span asp-validation-for="CustomerName"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CustomerPhone"
+               class="form-label">
+            Số điện thoại
+        </label>
+
+        <input asp-for="CustomerPhone"
+               class="form-control" />
+
+        <span asp-validation-for="CustomerPhone"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ShowDate"
+               class="form-label">
+            Ngày chiếu
+        </label>
+
+        <input asp-for="ShowDate"
+               type="datetime-local"
+               class="form-control" />
+
+        <span asp-validation-for="ShowDate"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MovieId"
+               class="form-label">
+            Chọn phim
+        </label>
+
+        <select asp-for="MovieId"
+                asp-items="ViewBag.Movies"
+                class="form-select">
+            <option value="">-- Chọn phim --</option>
+        </select>
+
+        <span asp-validation-for="MovieId"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SeatCount"
+               class="form-label">
+            Số lượng ghế
+        </label>
+
+        <input asp-for="SeatCount"
+               type="number"
+               min="1"
+               max="10"
+               class="form-control" />
+
+        <span asp-validation-for="SeatCount"
+              class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Lưu vé
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Quay lại
+    </a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

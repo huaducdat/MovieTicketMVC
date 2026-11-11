@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MovieTicketMVC.Models.Movie>
+
+@{
+    ViewData["Title"] = "Danh sách phim";
+}
+
+<h2>Danh sách phim</h2>
+
+<a asp-controller="Tickets"
+   asp-action="Create"
+   class="btn btn-primary mb-3">
+    Mua vé mới
+</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Tiêu đề</th>
+            <th>Giá gốc</th>
+            <th>Thời lượng</th>
+            <th>Thể loại</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Id</td>
+
+                <td>
+                    @Html.DisplayFor(m => movie.Title)
+                </td>
+
+                <td>
+                    @movie.BasePrice.ToString("N0") VNĐ
+                </td>
+
+                <td>
+                    @Html.DisplayFor(m => movie.DurationMinutes)
+                    phút
+                </td>
+
+                <td>
+                    @(movie.Genre ?? "Chưa cập nhật")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

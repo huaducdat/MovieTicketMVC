@@ -1,0 +1,59 @@
+﻿@model MovieTicketMVC.Models.Ticket
+
+@{
+    ViewData["Title"] = "Xóa vé";
+}
+
+<h2>Xác nhận xóa vé</h2>
+
+<div class="alert alert-warning">
+    Bạn có chắc chắn muốn xóa vé này không?
+</div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <td>@Model.Id</td>
+    </tr>
+
+    <tr>
+        <th>Khách hàng</th>
+        <td>@Model.CustomerName</td>
+    </tr>
+
+    <tr>
+        <th>Số điện thoại</th>
+        <td>@Model.CustomerPhone</td>
+    </tr>
+
+    <tr>
+        <th>Phim</th>
+        <td>@Model.Movie?.Title</td>
+    </tr>
+
+    <tr>
+        <th>Ngày chiếu</th>
+        <td>@Model.ShowDate.ToString("dd/MM/yyyy HH:mm")</td>
+    </tr>
+
+    <tr>
+        <th>Số lượng ghế</th>
+        <td>@Model.SeatCount</td>
+    </tr>
+</table>
+
+<form asp-action="Delete"
+      asp-route-id="@Model.Id"
+      method="post">
+
+    <button type="submit"
+            class="btn btn-danger">
+        Xác nhận xóa
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Hủy
+    </a>
+
+</form>
